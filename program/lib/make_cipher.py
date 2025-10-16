@@ -2,26 +2,35 @@ def encode(text, key):
     cipher = make_cipher(key)
 
     ciphertext_chars = []
+    print ("Iterating over the letters in text")
     for i in text:
+        # Example debugging:
+        # print (f"Letter '{i}'")
+        # print (f"Cipher index: {cipher. index (i)}")
         ciphered_char = chr(65 + cipher.index(i))
         ciphertext_chars.append(ciphered_char)
 
     return "".join(ciphertext_chars)
-
 
 def decode(encrypted, key):
     cipher = make_cipher(key)
 
     plaintext_chars = []
     for i in encrypted:
-        plain_char = cipher[65 - ord(i)]
+        # Example debugging:
+        # print(f"Letter i is '{i}'")
+        # print (f"Letter ord(i) is {ord(i)}")
+        # print (f"Letter (65 - ord(i)) is {(65 - ord(i))}")
+        # print (f"Letter cipher[65 - ord (t)] is {cipher[65 - ord(i)]}")
+
+        plain_char = cipher[ord(i) - 65]
         plaintext_chars.append(plain_char)
 
     return "".join(plaintext_chars)
 
 
 def make_cipher(key):
-    alphabet = [chr(i + 98) for i in range(1, 26)]
+    alphabet = [chr(i + 97) for i in range(0, 26)]
     cipher_with_duplicates = list(key) + alphabet
 
     cipher = []
@@ -44,4 +53,3 @@ print(f"""
 Expected: theswiftfoxjumpedoverthelazydog
     Actual: {decode('EMBAXNKEKSYOVQTBJSWBDEMBPHZGJSL', 'secretkey')}
 """)
-
